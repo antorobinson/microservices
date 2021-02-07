@@ -2,13 +2,16 @@ package com.anto.zuulproxy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 
-import com.anto.zuulproxy.filters.pre.SimpleFilter;
+import com.anto.zuulproxy.filters.PreFilter;
 
-@EnableZuulProxy
+
 @SpringBootApplication
+@EnableDiscoveryClient
+@EnableZuulProxy
 public class ZuulProxyApplication {
 
 	public static void main(String[] args) {
@@ -16,8 +19,8 @@ public class ZuulProxyApplication {
 	}
 	
 	@Bean
-	public SimpleFilter simpleFilter() {
-		return new SimpleFilter();
+	public PreFilter preFilter() {
+		return new PreFilter();
 	}
 
 }

@@ -21,11 +21,16 @@ public class CatalogController {
 	
 	@Autowired
 	private RestTemplate restTemplate;
-
+	
 	@GetMapping("/user/{user_id}")
 	public CatalogItems getMethod(@PathVariable("user_id") String userId) {
 		
-		UserRatings userRatings=restTemplate.getForObject("http://movie-rating-service/rating/user/"+userId, UserRatings.class);
+	
+		String baseUrl="http://zuul-service/movie-rating-service";
+		
+//		String ratingUrl="http://movie-rating-service";
+
+		UserRatings userRatings=restTemplate.getForObject(baseUrl+"/rating/user/"+userId, UserRatings.class);
 		
 		List<Catalog> catalogs = userRatings.getUserRatings().stream().map( rating ->{
 			Movie movie = restTemplate.getForObject("http://movie-info-service/info/movie/"+rating.getMovieId(), Movie.class);

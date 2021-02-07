@@ -1,4 +1,4 @@
-package com.anto.zuulproxy.filters.pre;
+package com.anto.zuulproxy.filters;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,9 +9,9 @@ import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 
-public class SimpleFilter extends ZuulFilter{
+public class PreFilter extends ZuulFilter{
 	
-	private static Logger log = LoggerFactory.getLogger(SimpleFilter.class);
+	private static Logger log = LoggerFactory.getLogger(PreFilter.class);
 
 	@Override
 	public Object run() throws ZuulException {
