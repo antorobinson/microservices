@@ -1,0 +1,34 @@
+server:
+ port: 8060
+
+#the below ignoring the default route by service names, and doing custom routing.
+zuul:
+ ignored-services: '*'
+ routes:
+  book:
+   path: /books/**
+   serviceId: book
+  movie-catalog-service:
+   path: /movie-catalog-service/**
+   serviceId: movie-catalog-service
+  movie-rating-service:
+   path: /movie-rating-service/**
+   serviceId: movie-rating-service
+  movie-info-service:
+   path: /movie-info-service/**
+   serviceId: movie-info-service
+#  zuul-service:
+#   path: /zuul-service/**
+#   serviceId: zuul-service
+
+
+spring:
+ application:
+  name: zuul-service
+
+eureka:
+ client:
+  service-url:
+   default-zone: http://localhost:8761/eureka
+ instance:
+  prefer-ip-address: true
